@@ -27,17 +27,30 @@ function splitArray(array, size) {
 }
 
 
-async function getWaterlooCases() {
-    let html = await getHTML(url).catch(err => console.log(err));
-    return new Promise((resolve, reject) => {
-        /*get all rows in HTML format*/
-        let tableString = $('tbody > tr', html).text();
-        tableString = tableString.replace(/^\s*\n/gm, "");
-        let tableArray = tableString.split('\n');
+async function getWaterlooData() {
+    /*get html page*/
+    const html = await getHTML(url).catch(err => console.log(err));
 
-        resolve(splitArray(tableArray,5));
+    let tables = [];
+
+    return new Promise((resolve, reject) => {
+        /*get all tables in the page*/
+        $('.datatable > tbody', html).each(
+            (index, element) => {
+                let tableString = $(element).text();
+                /*calculate the number of columns*/
+                const columns = $('tr > td',element.children[1]).length;
+                /*remove blank lines*/
+                tableString = tableString.replace(/^\s*\n/gm, "");
+                /*convert into array*/
+                let tableArray = tableString.split('\n');
+                /*split into array format tables*/
+                tableArray = splitArray(tableArray, columns);
+                tables.push(Array.from(tableArray));
+            });
+        resolve(tables);
         reject('something went wrong');
     });
 }
 
-module.exports = getWaterlooCases;
+module.exports = getWaterlooData;
