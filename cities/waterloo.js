@@ -13,7 +13,7 @@ async function getWaterlooData() {
 
     return new Promise((resolve, reject) => {
         if($(tablesSelector, html).length === 0) {
-            reject(`The data format is changed, please visit ${url}`);
+            reject(`The data is changed, please visit ${url}`);
         }
         /*get all tables in the page*/
         $(tablesSelector, html).each(
