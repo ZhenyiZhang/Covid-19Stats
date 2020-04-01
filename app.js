@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cityRoutes = require('./routes/cities');
 const PORT = 5000;
+const runTest = require('./test/test');
 
 /*bodyParser and cors*/
 app.use(cors());
@@ -12,6 +13,9 @@ app.use(bodyParser.json());
 
 /* set up routes */
 app.use('/api', cityRoutes);
+
+/*run test*/
+runTest();
 
 /*listen on port*/
 const port = process.env.PORT || PORT;

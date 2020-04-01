@@ -3,13 +3,14 @@ const rp = require('request-promise');
 const $ = require('cheerio');
 
 
-async function getPeelData() {
-    /*get html page*/
-    const html = await rp(url).catch(err => console.log(err));
+function getPeelData() {
     /*selector for tables*/
     const tablesSelector = 'tbody > tr';
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
+        /*get html page*/
+        const html = await rp(url).catch(err => reject(err));
+
         let table = [];
         if($(tablesSelector, html).length === 0) {
             reject(`The data is changed, please visit ${url}`);
@@ -26,9 +27,5 @@ async function getPeelData() {
         resolve(table);
     });
 }
-
-getPeelData().then(result => {
-    console.log(result);
-});
 
 module.exports = getPeelData;

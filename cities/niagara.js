@@ -4,14 +4,15 @@ const $ = require('cheerio');
 const splitArray = require('../handlers/splitArray');
 
 
-async function getNiagaraData() {
-    /*get html page*/
-    const html = await rp(url).catch(err => console.log(err));
+function getNiagaraData() {
     let tables = [];
     /*selector for tables*/
     const tablesSelector = 'table > tbody';
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
+        /*get html page*/
+        const html = await rp(url).catch(err => reject(err));
+
         if($(tablesSelector, html).length === 0) {
             reject(`The data is changed, please visit ${url}`);
         }
