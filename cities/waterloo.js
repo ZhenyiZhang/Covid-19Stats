@@ -7,12 +7,16 @@ const splitArray = require('../handlers/splitArray');
 async function getWaterlooData() {
     /*get html page*/
     const html = await getHTML(url).catch(err => console.log(err));
-
     let tables = [];
+    /*selector for tables*/
+    const tablesSelector = '.datatable > tbody';
 
     return new Promise((resolve, reject) => {
+        if($(tablesSelector, html).length === 0) {
+            reject(`The data format is changed, please visit ${url}`);
+        }
         /*get all tables in the page*/
-        $('.datatable > tbody', html).each(
+        $(tablesSelector, html).each(
             (index, element) => {
                 let tableString = $(element).text();
                 /*calculate the number of columns*/
