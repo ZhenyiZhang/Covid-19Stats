@@ -15,6 +15,7 @@ function getYorkData() {
             const row = table.split(',');
             response.push(Array.from(row));
         });
+        response.push(['source', url]);
         resolve(response);
         reject('Something went wrong');
     });

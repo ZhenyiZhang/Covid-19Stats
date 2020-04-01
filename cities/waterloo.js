@@ -29,6 +29,7 @@ async function getWaterlooData() {
                 tableArray = splitArray(tableArray, columns);
                 tables.push(Array.from(tableArray));
             });
+        tables.push(['source', url]);
         resolve(tables);
         reject('something went wrong');
     });
