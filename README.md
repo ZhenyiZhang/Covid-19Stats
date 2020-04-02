@@ -17,4 +17,5 @@ apis not only accept names of the municipalities' names. Names of sub-regions ca
 </br>
 For example:
 in the case of Halton region, Burlington is included in Halton, <br/>
-so https://vast-reaches-02757.herokuapp.com/api/burlington will return the same result. 
+so https://vast-reaches-02757.herokuapp.com/api/burlington will return the same result. <br/>
+![](https://githubcovid.s3.ca-central-1.amazonaws.com/Screen+Shot+2020-04-01+at+10.39.40+PM.png)
