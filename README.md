@@ -8,7 +8,7 @@ Region of Halton<br/>
 https://vast-reaches-02757.herokuapp.com/api/halton<br/>
 ![Postman Example](https://githubcovid.s3.ca-central-1.amazonaws.com/Screen+Shot+2020-04-01+at+8.11.25+PM.png)
 
-The municipalities' categorization was based on Association of Municipalities of Ontario
+Municipalities' categorization was based on Association of Municipalities of Ontario
 https://www.amo.on.ca/AMO-Content/Municipal-101/Ontario-Municipalities.aspx
 
 ![](https://githubcovid.s3.ca-central-1.amazonaws.com/Screen+Shot+2020-04-01+at+8.25.18+PM.png)
