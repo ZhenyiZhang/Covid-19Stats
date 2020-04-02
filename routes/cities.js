@@ -26,7 +26,7 @@ router.get('/:city', (req, res) => {
                 });
             }
         }
-    }
+    } else flag = true;
 
     /*cannot find any matches*/
     if(!flag) res.status(200).send('The area is not included');

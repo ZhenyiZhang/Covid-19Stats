@@ -8,7 +8,7 @@ const municipalities = {
             'Township of Brock',
             'Township of Scugog',
             'Township of Uxbridge'],
-    'dalton':
+    'halton':
         ['City of Burlington',
             'Town of Halton Hills',
             'Town of Milton',
