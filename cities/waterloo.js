@@ -4,7 +4,7 @@ const $ = require('cheerio');
 const splitArray = require('../handlers/splitArray');
 
 
-async function getWaterlooData() {
+function getWaterlooData() {
     let tables = [];
     /*selector for tables*/
     const tablesSelector = '.datatable > tbody';

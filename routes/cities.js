@@ -6,9 +6,32 @@ const niagara = require('../cities/niagara');
 const durham = require('../cities/durham');
 const peel = require('../cities/peel');
 const halton = require('../cities/halton');
+const cities = require('../data/municipalities');
 
 router.get('/:city', (req, res) => {
-    switch(req.params.city) {
+    let city = req.params.city.toLowerCase();
+    let flag = false;
+
+    /*Check if city is municipality name*/
+    if(!cities.hasOwnProperty(city)) {
+        /*search city/town/municipality*/
+        for(let key in cities) {
+            if(cities.hasOwnProperty(key)) {
+                cities[key].forEach(element => {
+                    const fullName = element.toLowerCase();
+                    if(fullName.includes(city)) {
+                        city = key;
+                        flag = true;
+                    }
+                });
+            }
+        }
+    }
+
+    /*cannot find any matches*/
+    if(!flag) res.status(200).send('The area is not included');
+
+    switch(city) {
         case 'waterloo':
             waterloo().then(result => {return res.json(result);})
                 .catch(err => {return res.status(400).send(err)});
