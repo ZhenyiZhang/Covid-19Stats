@@ -27,7 +27,7 @@ function getPeelData() {
             rowArray.pop();
             table.push(Array.from(rowArray));
         });
-        table.push(['source', url]);
+        table.push({'source': url});
         resolve(table);
     });
 }

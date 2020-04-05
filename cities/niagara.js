@@ -5,10 +5,10 @@ const splitArray = require('../handlers/splitArray');
 
 
 function getNiagaraData() {
-    let tables = [];
+    let tables = {};
+    tables.tables = [];
     /*selector for tables*/
     const tablesSelector = 'table > tbody';
-
     return new Promise(async(resolve, reject) => {
         /*if the promise takes more than 5 seconds to resolve, reject immediately*/
         setTimeout(() => {
@@ -29,9 +29,9 @@ function getNiagaraData() {
             });
             /*split into array format tables*/
             tableArray = splitArray(tableArray, columns);
-            tables.push(Array.from(tableArray));
+            tables.tables.push(Array.from(tableArray));
         });
-        tables.push(['source', url]);
+        tables.source = url;
         resolve(tables);
         reject('something went wrong');
     });

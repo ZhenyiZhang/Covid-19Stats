@@ -5,7 +5,8 @@ const splitArray = require('../handlers/splitArray');
 
 
 function getHaltonData() {
-    let tables = [];
+    let tables = {};
+    tables.tables = [];
     /*selector for tables*/
     const tablesSelector = 'div > .table-responsive';
     const columnSelector = 'th > span';
@@ -22,7 +23,7 @@ function getHaltonData() {
             reject(url);
         }
         $(tablesSelector, html).each((index, element) => {
-            let table = [];
+            let table = {};
             /*calculate column size*/
             const columns = $(columnSelector, element).length;
             /*extract the title*/
@@ -40,11 +41,11 @@ function getHaltonData() {
             /*re-format the array into table*/
             tableArray = splitArray(tableArray, columns);
             /*put back the title*/
-            table.push(title);
-            table.push(tableArray);
-            tables.push(table);
+            table.title = title;
+            table.tbody = tableArray;
+            tables.tables.push(table);
         });
-        tables.push(['source', url]);
+        tables.source = url;
         resolve(tables);
         reject('something went wrong');
     });
