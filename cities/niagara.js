@@ -10,11 +10,15 @@ function getNiagaraData() {
     const tablesSelector = 'table > tbody';
 
     return new Promise(async(resolve, reject) => {
+        /*if the promise takes more than 5 seconds to resolve, reject immediately*/
+        setTimeout(() => {
+            reject('The process has been taking too long');
+        }, 5000);
         /*get html page*/
         const html = await rp(url).catch(err => reject(err));
-
+        /*check if they changed their table format */
         if($(tablesSelector, html).length === 0) {
-            reject(`The data is changed, please visit ${url}`);
+            reject(url);
         }
         $(tablesSelector, html).each((index, element) => {
             let tableArray = [];

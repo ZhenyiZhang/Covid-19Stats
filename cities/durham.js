@@ -1,4 +1,4 @@
-const url = 'https://www.durham.ca/en/health-and-wellness/novel-coronavirus-update.aspx#Status-of-cases-in-Durham-Region';
+const url = 'https://app.powerbi.com/view?r=eyJrIjoiNDZkYzgzN2YtNGM2Yi00ZTQ0LTkzOTUtY2IwOTlhNzlmMWE2IiwidCI6IjUyZDdjOWMyLWQ1NDktNDFiNi05YjFmLTlkYTE5OGRjM2YxNiJ9';
 const rp = require('request-promise');
 const $ = require('cheerio');
 
@@ -7,11 +7,15 @@ function getDurhamData() {
     const tablesSelector = '.icrt-sharedContent > .emphasis-Green';
 
     return new Promise(async(resolve, reject) => {
+        /*if the promise takes more than 5 seconds to resolve, reject immediately*/
+        setTimeout(() => {
+            reject('The process has been taking too long');
+        }, 5000);
         /*get html page*/
         const html = await rp(url).catch(err => reject(err));
-
+        /*check if they changed their table format */
         if($(tablesSelector, html).length === 0) {
-            reject(`The data is changed, please visit ${url}`);
+            reject(url);
         }
         const data = $(tablesSelector, html).text();
         resolve(data + `source + ${url}`);

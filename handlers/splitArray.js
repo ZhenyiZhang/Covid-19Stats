@@ -1,4 +1,5 @@
 function splitArray(array, size) {
+    if(size === 0) throw('cannot split into array of size 0');
     if(array[array.length - 1] === '') {
         array.pop();
     }

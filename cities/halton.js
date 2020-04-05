@@ -7,18 +7,24 @@ const splitArray = require('../handlers/splitArray');
 function getHaltonData() {
     let tables = [];
     /*selector for tables*/
-    const tablesSelector = '.col-md-6';
+    const tablesSelector = 'div > .table-responsive';
+    const columnSelector = 'th > span';
 
     return new Promise(async(resolve, reject) => {
+        /*if the promise takes more than 5 seconds to resolve, reject immediately*/
+        setTimeout(() => {
+            reject('The process has been taking too long');
+        }, 5000);
         /*get html page*/
         const html = await rp(url).catch(err => reject(err));
+        /*check if they changed their table format */
         if($(tablesSelector, html).length === 0) {
-            reject(`The data is changed, please visit ${url}`);
+            reject(url);
         }
         $(tablesSelector, html).each((index, element) => {
             let table = [];
             /*calculate column size*/
-            const columns = $('tr > th', element).length;
+            const columns = $(columnSelector, element).length;
             /*extract the title*/
             const title = $('h3', element).text();
             /*get the whole table in string type*/
