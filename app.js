@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use('/api', cityRoutes);
 
 /*run test*/
-runTest();
+runTest(true);
 
 /*listen on port*/
 const port = process.env.PORT || PORT;
