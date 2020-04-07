@@ -3,6 +3,7 @@ const rp = require('request-promise');
 
 function getYorkData() {
     return new Promise(async (resolve, reject) => {
+        let tables = [];
         /*Set up response msg*/
         let response = {};
         response.title = 'York Region Covid-19 Cases';
@@ -22,8 +23,9 @@ function getYorkData() {
             const row = table.split(',');
             response.tbody.push(Array.from(row));
         });
-        response.source = url;
-        resolve(response);
+        tables.tables = response;
+        tables.source = url;
+        resolve(tables);
         reject('Something went wrong');
     });
 }
