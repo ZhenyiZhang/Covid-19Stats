@@ -3,7 +3,7 @@ const rp = require('request-promise');
 
 function getYorkData() {
     return new Promise(async (resolve, reject) => {
-        let tables = [];
+        let tables = {};
         /*Set up response msg*/
         let response = {};
         response.title = 'York Region Covid-19 Cases';
