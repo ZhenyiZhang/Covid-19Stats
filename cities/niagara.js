@@ -29,7 +29,9 @@ function getNiagaraData() {
             });
             /*split into array format tables*/
             tableArray = splitArray(tableArray, columns);
-            tables.tables.push(Array.from(tableArray));
+            let table = {};
+            table.tbody = tableArray;
+            tables.tables.push(table);
         });
         tables.source = url;
         resolve(tables);
