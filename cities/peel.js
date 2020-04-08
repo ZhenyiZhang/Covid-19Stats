@@ -4,13 +4,12 @@ const $ = require('cheerio');
 
 
 function getPeelData() {
-    let tables = {};
+    let table = {};
     /*selector for tables*/
     const tablesSelector = 'tbody > tr';
 
     return new Promise(async(resolve, reject) => {
-        let tables = {};
-        tables.tables = [];
+        table.table = {};
         /*if the promise takes more than 5 seconds to resolve, reject immediately*/
         setTimeout(() => {
             reject('The process has been taking too long');
@@ -21,9 +20,8 @@ function getPeelData() {
         if($(tablesSelector, html).length === 0) {
             reject(url);
         }
-
-        let table = {};
-        table.tbody = [];
+        table.table = {};
+        table.table.tbody = [];
         $(tablesSelector, html).each((index, element) => {
             let rowString = $(element).text();
             /*remove blank lines*/
@@ -34,11 +32,10 @@ function getPeelData() {
             }
             /*pop out empty element*/
             rowArray.pop();
-            table.tbody.push(Array.from(rowArray));
+            table.table.tbody.push(Array.from(rowArray));
         });
-        tables.tables.push(table);
-        tables.source = url;
-        resolve(tables);
+        table.source = url;
+        resolve(table);
     });
 }
 
