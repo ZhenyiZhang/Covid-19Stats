@@ -3,11 +3,10 @@ const rp = require('request-promise');
 
 function getYorkData() {
     return new Promise(async (resolve, reject) => {
+        /*set up response table object*/
         let table = {};
-        /*Set up response msg*/
-        let response = {};
-        response.title = 'York Region Covid-19 Cases';
-        response.tbody = [];
+        table.title = 'York Region Covid-19 Cases';
+        table.tbody = [];
         /*if the promise takes more than 5 seconds to resolve, reject immediately*/
         setTimeout(() => {
             reject('The process has been taking too long');
@@ -19,11 +18,11 @@ function getYorkData() {
         /*split string into array*/
         let tableArray = tableString.split('\n');
         /*insert rows of the table*/
-        tableArray.forEach( table => {
-            const row = table.split(',');
-            response.tbody.push(Array.from(row));
+        tableArray.forEach( element => {
+            const row = element.split(',');
+            table.tbody.push(Array.from(row));
         });
-        table.table = response;
+        /*add source*/
         table.source = url;
         resolve(table);
         reject('Something went wrong');
