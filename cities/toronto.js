@@ -3,13 +3,14 @@ const rp = require('request-promise');
 const $ = require('cheerio');
 const splitArray = require('../handlers/splitArray');
 
+//todo: add header
 function getTorontoData() {
     let resTable = {};
     resTable.tbody = [];
     /*selector for tables*/
     const tablesSelector = '.cot-table';
     const columnSelector = 'tbody > tr';
-    const headerSelector = 'thead > th';
+    const headerSelector = 'thead > tr';
 
     return new Promise(async (resolve, reject) => {
         /*if the promise takes more than 5 seconds to resolve, reject immediately*/
@@ -24,6 +25,14 @@ function getTorontoData() {
         }
         /*scrape table*/
         const table = await $(tablesSelector, html);
+
+        /*push header into the table*/
+        let header = await $(headerSelector, html).text();
+        let headerString = header.replace(/^\s*\n/gm, "");
+        let headerArray  = headerString.split('\n');
+        headerArray.pop();
+        headerArray = [...headerArray];
+        resTable.tbody.push(headerArray);
 
         $(columnSelector, table).each((index, element) => {
             let rowString = $(element).text();
