@@ -48,5 +48,7 @@ const municipalities = {
             'Town of Newmarket',
             'Town of Whitchurch-Stouffville',
             'Township of King'],
+        'wdg':
+        ['Wellington', 'Dufferin', 'Guelph'],
 };
 module.exports = municipalities;
