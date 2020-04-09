@@ -24,7 +24,7 @@ function getPeelData() {
             let rowString = $(element).text();
             /*remove blank lines*/
             rowString = rowString.replace(/^\s*\n/gm, "");
-            let rowArray  =rowString.split('\n');
+            let rowArray  = rowString.split('\n');
             for (let i = 0; i < rowArray.length; i++) {
                 rowArray[i] = rowArray[i].trim();
             }

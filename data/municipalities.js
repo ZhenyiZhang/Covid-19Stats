@@ -50,5 +50,6 @@ const municipalities = {
             'Township of King'],
         'wdg':
         ['Wellington', 'Dufferin', 'Guelph'],
+        'toronto': [],
 };
 module.exports = municipalities;

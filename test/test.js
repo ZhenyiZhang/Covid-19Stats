@@ -5,6 +5,7 @@ const durham = require('../cities/durham');
 const peel = require('../cities/peel');
 const halton = require('../cities/halton');
 const wdg = require('../cities/WDG');
+const toronto = require('../cities/toronto');
 const SID = process.env.twilioSid;
 const token = process.env.twilioToken;
 
@@ -13,7 +14,7 @@ function testRoutes() {
         [testMsg(waterloo,'waterloo'), testMsg(york,'york'),
                 testMsg(niagara, 'niagara'), testMsg(durham, 'durham'),
                 testMsg(peel, 'peel'), testMsg(halton, 'halton'),
-                testMsg(wdg, 'wdg')])
+                testMsg(wdg, 'wdg'), testMsg(toronto, 'toronto')])
         .then(result => {
             /*check if SID and Token exist as env variables
             do not store those variables in local*/

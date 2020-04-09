@@ -7,6 +7,7 @@ const durham = require('../cities/durham');
 const peel = require('../cities/peel');
 const halton = require('../cities/halton');
 const wdg = require('../cities/WDG');
+const toronto = require('../cities/toronto');
 const cities = require('../data/municipalities');
 
 router.get('/:city', (req, res) => {
@@ -64,6 +65,8 @@ router.get('/:city', (req, res) => {
             wdg().then(result => {return res.json(result);})
                 .catch(err => {return res.status(401).json(err)});
             break;
+        case 'toronto':
+            to
     }
 });
 
