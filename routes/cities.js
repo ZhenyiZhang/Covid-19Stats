@@ -34,27 +34,27 @@ router.get('/:city', (req, res) => {
     switch(city) {
         case 'waterloo':
             waterloo().then(result => {return res.json(result);})
-                .catch(err => {return res.status(303).redirect(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
         case 'york':
             york().then(result => {return res.json(result);})
-        .catch(err => {return res.status(303).send(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
         case 'niagara':
             niagara().then(result => {return res.json(result);})
-                .catch(err => {return res.status(303).send(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
         case 'durham':
             durham().then(result => {return res.json(result);})
-                .catch(err => {return res.status(303).send(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
         case 'peel':
             peel().then(result => {return res.json(result);})
-                .catch(err => {return res.status(303).send(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
         case 'halton':
             halton().then(result => {return res.json(result);})
-                .catch(err => {return res.status(303).send(err)});
+                .catch(err => {return res.status(401).json(err)});
             break;
 
     }
