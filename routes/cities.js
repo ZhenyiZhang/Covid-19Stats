@@ -66,7 +66,9 @@ router.get('/:city', (req, res) => {
                 .catch(err => {return res.status(401).json(err)});
             break;
         case 'toronto':
-            to
+            toronto().then(result => {return res.json(result);})
+                .catch(err => {return res.status(401).json(err)});
+            break;
     }
 });
 
