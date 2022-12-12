@@ -14,7 +14,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "http": "0.0.1-security",
     "nodemon": "^2.0.2",
     "request-promise": "^4.2.5",
